@@ -347,16 +347,23 @@ const ImageModal = ({ show, handleClose, image, title, tags, otherImages, onTagC
   
   const renderTags = () => {
     if (!currentTags || !Array.isArray(currentTags)) return null; // Return null if no tags or not an array
+  
     return currentTags.map((tag, index) => (
-      <span 
-        key={index} 
-        className="tag" 
-        onClick={() => onTagClick(tag.trim())} // Trigger onTagClick with the clicked tag
-      >
-        {tag.trim()}
-      </span>
+      <li key={index} className="tag">
+        <a 
+          href={`#${tag.trim()}`} // Create a link for the tag, assuming the link points to an anchor or search filter
+          onClick={(e) => {
+            e.preventDefault(); // Prevent default anchor behavior
+            onTagClick(tag.trim()); // Trigger onTagClick with the clicked tag
+          }} 
+          className="tag-link"
+        >
+          {tag.trim()} {/* Display the tag name */}
+        </a>
+      </li>
     ));
   };
+  
 
   const renderColorPickers = () => {
     const visibleColors = showMoreColors ? colors : colors.slice(0, 3); // Show 3 colors initially
@@ -401,7 +408,7 @@ const ImageModal = ({ show, handleClose, image, title, tags, otherImages, onTagC
               color: 'blue',
               textDecoration: 'underline',
               cursor: 'pointer',
-              marginTop: '10px', // Add some margin for better spacing
+              marginTop: '7px', // Add some margin for better spacing
             }}
           >
             {showMoreColors ? 'Show Less' : 'Edit More Colors'}
@@ -413,20 +420,29 @@ const ImageModal = ({ show, handleClose, image, title, tags, otherImages, onTagC
   
   
   const handleDownload = () => {
-    if (selectedFormat === 'svg') {
-      downloadSvg();
-    } else if (selectedFormat === 'png') {
-      convertSvgToPng();
-    } else if (selectedFormat === 'jpeg') {
-      convertSvgToJpeg();
-    }
-    setIsDownloading(true);
+    try {
+      if (selectedFormat === 'svg') {
+        downloadSvg();
+      } else if (selectedFormat === 'png') {
+        convertSvgToPng();
+      } else if (selectedFormat === 'jpeg') {
+        convertSvgToJpeg();
+      }
+      setIsDownloading(true);
   
-    setTimeout(() => {
-      setIsDownloading(false); // Revert to the download icon after 10 seconds
-    }, 2000); // 2 seconds timeout
+      // Timeout to revert download state
+      const timer = setTimeout(() => {
+        setIsDownloading(false);
+      }, 2000);
+  
+      // Cleanup timer if needed
+      return () => clearTimeout(timer);
+    } catch (error) {
+      console.error("Download error:", error);
+      setIsDownloading(false); // Reset state in case of failure
+    }
   };
-
+  
   return (
     <Modal show={show} onHide={handleClose} size="xl" centered>
       <Modal.Header closeButton>
@@ -482,16 +498,45 @@ const ImageModal = ({ show, handleClose, image, title, tags, otherImages, onTagC
             <h3 style={{ paddingLeft: '5%' }}>
                 <span>Format</span>
                 </h3>
-              <div className='b-35'>
-              <button className={`button-35 ${selectedFormat === 'svg' ? 'active' : ''}`} onClick={() => setSelectedFormat('svg')}>
-                SVG
-              </button>
-              <button className={`button-35 ${selectedFormat === 'png' ? 'active' : ''}`} onClick={() => setSelectedFormat('png')}>
-                PNG
-              </button>
-              <button className={`button-35 ${selectedFormat === 'jpeg' ? 'active' : ''}`} onClick={() => setSelectedFormat('jpeg')}>
-                JPEG
-              </button>
+                <div className="b-35">
+                  <ul className='b-35l'>
+                  <li>
+                    <a 
+                      href="#svg" 
+                      className={`button-35 ${selectedFormat === 'svg' ? 'active' : ''}`} 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedFormat('svg');
+                      }}
+                    >
+                      SVG
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="#png" 
+                      className={`button-35 ${selectedFormat === 'png' ? 'active' : ''}`} 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedFormat('png');
+                      }}
+                    >
+                      PNG
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="#jpeg" 
+                      className={`button-35 ${selectedFormat === 'jpeg' ? 'active' : ''}`} 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedFormat('jpeg');
+                      }}
+                    >
+                      JPEG
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
             
@@ -500,18 +545,57 @@ const ImageModal = ({ show, handleClose, image, title, tags, otherImages, onTagC
                 <span>Resolution</span>
               </h3>
               <div className='b-35'>
-                <button className={`button-35 ${resolution === 'original' ? 'active' : ''}`} onClick={() => handleResolutionChange('original')}>
-                  1920 x 1356
-                </button>
-                <button className={`button-35 ${resolution === '500' ? 'active' : ''}`} onClick={() => handleResolutionChange('500')}>
-                  500 x 500
-                </button>
-                <button className={`button-35 ${resolution === '1000' ? 'active' : ''}`} onClick={() => handleResolutionChange('1000')}>
-                  1000 x 1000
-                </button>
-                <button className={`button-35 ${resolution === '2000' ? 'active' : ''}`} onClick={() => handleResolutionChange('2000')}>
-                  2000 x 2000
-                </button>
+              <ul className="b-352">
+  <li>
+    <a 
+      href="#500" 
+      className={`button-35 ${resolution === '500' ? 'active' : ''}`} 
+      onClick={(e) => {
+        e.preventDefault();
+        handleResolutionChange('500');
+      }}
+    >
+      500 x 500
+    </a>
+  </li>
+  <li>
+    <a 
+      href="#1000" 
+      className={`button-35 ${resolution === '1000' ? 'active' : ''}`} 
+      onClick={(e) => {
+        e.preventDefault();
+        handleResolutionChange('1000');
+      }}
+    >
+      1000 x 1000
+    </a>
+  </li>         
+  <li>
+    <a 
+      href="#original" 
+      className={`button-35 ${resolution === 'original' ? 'active' : ''}`} 
+      onClick={(e) => {
+        e.preventDefault();
+        handleResolutionChange('original');
+      }}
+    >
+      1920 x 1356
+    </a>
+  </li>
+  <li>
+    <a 
+      href="#2000" 
+      className={`button-35 ${resolution === '2000' ? 'active' : ''}`} 
+      onClick={(e) => {
+        e.preventDefault();
+        handleResolutionChange('2000');
+      }}
+    >
+      2000 x 2000
+    </a>
+  </li>
+</ul>
+
             </div>
             </div>
           </div>
@@ -537,9 +621,9 @@ const ImageModal = ({ show, handleClose, image, title, tags, otherImages, onTagC
 
             <div className='tag-sec'>
               <h3>Tags:</h3>
-              <div className="tags-container">
+              <ul className="tags-container">
                 {renderTags()} {/* Render the tags here */}
-              </div>
+              </ul>
             </div>
 
             <div className="or-spacer">

@@ -38,7 +38,7 @@ const Navbar = ({ searchInput, setSearchInput }) => {
       <div className="container-fluid" id="org-nav">
       <div className="navbar-brand" onClick={handleLogoClick}>
         {/* Wrap the logo with an anchor tag */}
-        <a href="https://the2px.com" target="_blank" rel="noopener noreferrer" className="logo-link">
+        <a href="https://the2px.com" rel="noopener noreferrer" className="logo-link">
           <img src="https://the2px.com/wp-content/uploads/2024/10/the2px-logo.svg" alt="the2px logo" className="navbar-logo" />
         </a>
       </div>
