@@ -130,6 +130,7 @@
   background-color: #fdfdfd !important; /* Change background color for active button */
   box-shadow: transparent 0 0 0 0, rgb(18 18 18 / 10%) 0 6px 20px;
   transform: scale(1.02); /* Slightly increase size of selected button */
+  border: 1px solid #c1272d;
 }
 
 

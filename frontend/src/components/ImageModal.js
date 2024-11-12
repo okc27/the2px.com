@@ -546,55 +546,55 @@ const ImageModal = ({ show, handleClose, image, title, tags, otherImages, onTagC
               </h3>
               <div className='b-35'>
               <ul className="b-352">
-  <li>
-    <a 
-      href="#500" 
-      className={`button-35 ${resolution === '500' ? 'active' : ''}`} 
-      onClick={(e) => {
-        e.preventDefault();
-        handleResolutionChange('500');
-      }}
-    >
-      500 x 500
-    </a>
-  </li>
-  <li>
-    <a 
-      href="#1000" 
-      className={`button-35 ${resolution === '1000' ? 'active' : ''}`} 
-      onClick={(e) => {
-        e.preventDefault();
-        handleResolutionChange('1000');
-      }}
-    >
-      1000 x 1000
-    </a>
-  </li>         
-  <li>
-    <a 
-      href="#original" 
-      className={`button-35 ${resolution === 'original' ? 'active' : ''}`} 
-      onClick={(e) => {
-        e.preventDefault();
-        handleResolutionChange('original');
-      }}
-    >
-      1920 x 1356
-    </a>
-  </li>
-  <li>
-    <a 
-      href="#2000" 
-      className={`button-35 ${resolution === '2000' ? 'active' : ''}`} 
-      onClick={(e) => {
-        e.preventDefault();
-        handleResolutionChange('2000');
-      }}
-    >
-      2000 x 2000
-    </a>
-  </li>
-</ul>
+              <li>
+                <a 
+                  href="#500" 
+                  className={`button-35 ${resolution === '500' ? 'active' : ''}`} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleResolutionChange('500');
+                  }}
+                >
+                  500 x 500
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#1000" 
+                  className={`button-35 ${resolution === '1000' ? 'active' : ''}`} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleResolutionChange('1000');
+                  }}
+                >
+                  1000 x 1000
+                </a>
+              </li>         
+              <li>
+                <a 
+                  href="#original" 
+                  className={`button-35 ${resolution === 'original' ? 'active' : ''}`} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleResolutionChange('original');
+                  }}
+                >
+                  1920 x 1356
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="#2000" 
+                  className={`button-35 ${resolution === '2000' ? 'active' : ''}`} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleResolutionChange('2000');
+                  }}
+                >
+                  2000 x 2000
+                </a>
+              </li>
+            </ul>
 
             </div>
             </div>

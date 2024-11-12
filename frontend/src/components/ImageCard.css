@@ -14,6 +14,8 @@
   padding-bottom: 5px;
   font-size: 1rem;
   color: black;
+  font-weight: 250 !important;
+  text-transform: capitalize;
 }
 
 /* Ensure the image preview scales correctly */
@@ -105,36 +107,8 @@ button.btn.btn-warning:hover {
   transition: bottom 0.3s ease;
 }
 
-/* Responsive adjustments for download buttons */
-@media (max-width: 768px) {
-  .image-card:hover .download-buttons {
-    padding: 5px 20px; /* Reduced padding for tablets and medium screens */
-    gap: 8px;          /* Reduced gap between buttons */
-    bottom: 0;         /* Ensure buttons stay at the bottom */
-  }
-
-  .download-btn {
-    font-size: 10px; /* Slightly reduce button text size for smaller screens */
-    padding: 6px 10px; /* Adjust padding for smaller buttons */
-  }
-
-  .image-card h3 {
-    font-size: 0.90rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .image-card:hover .download-buttons {
-    flex-direction: column; /* Stack buttons vertically for small screens */
-    padding: 5px 10px; /* Further reduce padding for small screens */
-    gap: 6px;          /* Smaller gap between buttons */
-  }
-
-  .download-btn {
-    font-size: 8px; /* Smaller text size for mobile devices */
-    padding: 4px 8px; /* Compact padding for small screens */
-    max-width: 80px; /* Limit the width of the buttons */
-  }
+.image-card.card.p-3.text-center:hover {
+  cursor: pointer; /* Show hand cursor when hovering over the div */
 }
 
 /* Color picker styling */
@@ -147,16 +121,55 @@ button.btn.btn-warning:hover {
   background-color: #f8f8f8;
 }
 
-/* Ensure responsiveness */
+.col-4.mb-4 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+/* Increased size of image cards */
+.image-card {
+  max-width: 100%; /* Let the cards take up the full column width */
+  height: auto; /* Maintain height proportional to the content */
+  padding: 20px; /* Increase padding inside the cards */
+}
+
+.image-preview {
+  width: 100%;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* Responsive adjustments for download buttons */
 @media (max-width: 768px) {
+  .image-card:hover .download-buttons {
+    padding: 5px 20px; /* Reduced padding for tablets and medium screens */
+    gap: 8px;          /* Reduced gap between buttons */
+    bottom: 0;         /* Ensure buttons stay at the bottom */
+  }
+
   .col-4.mb-4 {
     flex: 0 0 50%;
     max-width: 50%;
   }
-}
+  
+  .image-card.card.p-3.text-center{
+    height: 200px;
+  }
 
-/* Responsive styles for smaller screens */
-@media (max-width: 768px) {
+  .download-btn {
+    font-size: 10px; /* Slightly reduce button text size for smaller screens */
+    padding: 6px 10px; /* Adjust padding for smaller buttons */
+  }
+
+  .image-card h3 {
+    font-size: 0.90rem;
+  }
+
   .image-card {
     padding: 12px;
     margin: 10px auto;
@@ -179,22 +192,23 @@ button.btn.btn-warning:hover {
 }
 
 @media (max-width: 480px) {
+  .image-card:hover .download-buttons {
+    flex-direction: column; /* Stack buttons vertically for small screens */
+    padding: 5px 10px; /* Further reduce padding for small screens */
+    gap: 6px;          /* Smaller gap between buttons */
+  }
+
+  .download-btn {
+    font-size: 8px; /* Smaller text size for mobile devices */
+    padding: 4px 8px; /* Compact padding for small screens */
+    max-width: 80px; /* Limit the width of the buttons */
+  }
+
   .image-card {
     padding: 8px;
     font-size: 10px;
     margin: 8px auto;
   }
-
-  .download-btn {
-    padding: 4px 8px;
-    font-size: 8px;
-    max-width: 60px; /* Further reduced button size */
-  }
-}
-
-.col-4.mb-4 {
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 @media (max-width: 550px) {
@@ -218,20 +232,4 @@ button.btn.btn-warning:hover {
     font-size: 0.75rem;
     margin-bottom: 0px;
   }
-}
-
-/* Increased size of image cards */
-.image-card {
-  max-width: 100%; /* Let the cards take up the full column width */
-  height: auto; /* Maintain height proportional to the content */
-  padding: 20px; /* Increase padding inside the cards */
-}
-
-.image-preview {
-  width: 100%;
-}
-
-.modal-body {
-  display: flex;
-  justify-content: space-between;
 }
