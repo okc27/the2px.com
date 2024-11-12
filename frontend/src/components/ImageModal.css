@@ -208,7 +208,8 @@ button.btn {
   border-radius: 5px;
   margin-bottom: 5px;
   margin-right: 5px;
-  box-sizing: border-box; /* Ensures padding and borders are included in size */
+  box-sizing: border-box;
+  border: 1px solid #c1272d;
 }
 
 .bg-color-circle {
@@ -216,7 +217,7 @@ button.btn {
   height: 30px;
   cursor: pointer;
   border-radius: 5px;
-  border: 0.50px solid black;
+  border: 1px solid #c1272d;
   transition: width 0.3s ease, height 0.3s ease;
 }
 
@@ -432,10 +433,6 @@ h3 {
     height: auto;
     width: 100% !important;
   }
-  .modal-content {
-    width: 90% !important;
-    margin-left: 5% !important;
-  }
   .sketch-picker {
     width: 130px !important;
   }
@@ -513,7 +510,7 @@ h3 {
   }
   .modal-content {
     width: 90% !important;
-    margin-left: 10%;
+    margin-left: 5%;
   }
 }
 
