@@ -5,7 +5,7 @@ import ImageCard from './ImageCard';
 const ImageGallery = ({ bgColor, searchInput, setSearchInput }) => {
   const [images, setImages] = useState([]);
   const [selectedCategory] = useState('all');
-  const noImageFoundUrl = "https://the2px.com/wp-content/uploads/2024/10/image-not-found-1.svg";
+  const noImageFoundUrl = "http://localhost/headlesswp/the2px/wp-content/uploads/2024/10/image-not-found-1.svg";
 
   useEffect(() => {
     // Preload the "no images found" image
@@ -19,7 +19,7 @@ const ImageGallery = ({ bgColor, searchInput, setSearchInput }) => {
         let totalPages;
 
         do {
-          const response = await fetch(`https://the2px.com/wp-json/wp/v2/svg_images?per_page=100&page=${page}`);
+          const response = await fetch(`http://localhost/headlesswp/the2px/wp-json/wp/v2/svg_images?per_page=100&page=${page}`);
           if (!response.ok) {
             throw new Error(`Error fetching images: ${response.statusText}`);
           }
@@ -34,7 +34,7 @@ const ImageGallery = ({ bgColor, searchInput, setSearchInput }) => {
           const fileUrl = image.svg_image_file || '';
           return {
             ...image,
-            file: fileUrl.startsWith('http') ? fileUrl : `https://the2px.com/${fileUrl}`,
+            file: fileUrl.startsWith('http') ? fileUrl : `http://localhost/headlesswp/the2px/${fileUrl}`,
             tags: image.svg_image_tags ? image.svg_image_tags.split(',') : [],
           };
         });
